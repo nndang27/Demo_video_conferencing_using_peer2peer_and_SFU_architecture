@@ -65,7 +65,7 @@ const streamSuccess = (stream) => {
   isShareScreen = false
   audioParams = { track: stream.getAudioTracks()[0] , appData: {isShareScreen: isShareScreen}};
   videoParams = { track: stream.getVideoTracks()[0], ...videoParams, appData: {isShareScreen: isShareScreen} };
-  console.log(`Video params: ${videoParams}`)
+  console.log("Video track:", stream.getVideoTracks()[0])
 
   joinRoom()
 }
@@ -332,6 +332,7 @@ const connectRecvTransport = async (consumerTransport, remoteProducerId, serverC
 
     // destructure and retrieve the video track from the producer
     const { track } = consumer
+    console.log("Tr",[track])
     document.getElementById(remoteProducerId).srcObject = new MediaStream([track])
 
     // the server consumer started with media paused
