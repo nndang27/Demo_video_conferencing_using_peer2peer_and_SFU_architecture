@@ -62,7 +62,7 @@ let consumers = []      // [ { socketId1, roomName1, consumer, }, ... ]
 const createWorker = async () => {
   worker = await mediasoup.createWorker({
     rtcMinPort: 40000,
-    rtcMaxPort: 49999,
+    rtcMaxPort: 41999,
 //     rtcMinPort: 80,
 //     rtcMaxPort: 443,
   })
