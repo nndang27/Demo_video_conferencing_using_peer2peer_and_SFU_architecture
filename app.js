@@ -463,15 +463,15 @@ const createWebRtcTransport = async (router) => {
         listenIps: [
           {
             ip: '0.0.0.0', // replace with relevant IP address
-            announcedIp: '13.228.225.19',
+            announcedIp: '42.114.39.255',
           }
         ],
         enableUdp: true,
         enableTcp: true,
         preferUdp: true,
       }
-      console.log("Ip: ",webRtcTransport_options.listenIps.ip)
-      console.log("announcedIp: ",webRtcTransport_options.listenIps.announcedIp)
+      console.log("Ip: ",webRtcTransport_options.listenIps[0].ip)
+      console.log("announcedIp: ",webRtcTransport_options.listenIps[0].announcedIp)
       
       // https://mediasoup.org/documentation/v3/mediasoup/api/#router-createWebRtcTransport
       let transport = await router.createWebRtcTransport(webRtcTransport_options)
