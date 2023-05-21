@@ -15,8 +15,6 @@ const __dirname = path.resolve()
 import { Server } from 'socket.io'
 import mediasoup from 'mediasoup'
 
-const PORT = process.env.PORT || 3000;
-
 
 app.get('*', (req, res, next) => {
   const path = '/sfu/'
@@ -34,9 +32,10 @@ const options = {
   cert: fs.readFileSync('./server/ssl/cert.pem', 'utf-8')
 }
 
+const PORT = process.env.PORT || 3000;
 const httpsServer = https.createServer(options, app)
-httpsServer.listen(PORT, () => {
-  console.log('listening on port: ' + PORT)
+httpsServer.listen(3000, () => {
+  console.log('listening on port: ' + 3000)
 })
 
 const io = new Server(httpsServer)
