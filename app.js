@@ -455,45 +455,18 @@ function getProducer(socketId, dataChannel){
   return producerTransport.producer
 }
 
-function getListenIps () {
-  const listenIps = []
-  if (typeof window === 'undefined') {
-    const os = require('os')
-    const networkInterfaces = os.networkInterfaces()
-    const ips = []
-    if (networkInterfaces) {
-      for (const [key, addresses] of Object.entries(networkInterfaces)) {
-        addresses.forEach(address => {
-          if (address.family === 'IPv4') {
-            listenIps.push({ ip: address.address, announcedIp: null })
-          }
-          /* ignore link-local and other special ipv6 addresses.
-           * https://www.iana.org/assignments/ipv6-address-space/ipv6-address-space.xhtml
-           */
-          else if (address.family === 'IPv6' && address.address[0] !== 'f') {
-            listenIps.push({ ip: address.address, announcedIp: null })
-          }
-        })
-      }
-    }
-  }
-  if (listenIps.length === 0) {
-    listenIps.push({ ip: '127.0.0.1', announcedIp: null })
-  }
-  return listenIps
-}
+
 const createWebRtcTransport = async (router) => {
   return new Promise(async (resolve, reject) => {
     try {
       // https://mediasoup.org/documentation/v3/mediasoup/api/#WebRtcTransportOptions
       const webRtcTransport_options = {
-//         listenIps: [
-//           {
-//             ip: process.env.MEDIASOUP_LISTEN_IP || '0.0.0.0', // replace with relevant IP address
-//             announcedIp: '54.254.162.138',
-//           }
-//         ],
-        listenIps: getListenIps(),
+        listenIps: [
+          {
+            ip: '54.254.162.138',//'0.0.0.0', // replace with relevant IP address
+            announcedIp: null//'54.254.162.138',
+          }
+        ],
         enableUdp: true,
         enableTcp: true,
         preferUdp: true,
