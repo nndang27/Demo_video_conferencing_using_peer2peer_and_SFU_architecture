@@ -470,7 +470,9 @@ const createWebRtcTransport = async (router) => {
         enableTcp: true,
         preferUdp: true,
       }
-
+      console.log("Ip: ",process.env.MEDIASOUP_LISTEN_IP)
+      console.log("announcedIp: ",process.env.MEDIASOUP_ANNOUNCED_IP)
+      
       // https://mediasoup.org/documentation/v3/mediasoup/api/#router-createWebRtcTransport
       let transport = await router.createWebRtcTransport(webRtcTransport_options)
       console.log(`transport id: ${transport.id}`)
